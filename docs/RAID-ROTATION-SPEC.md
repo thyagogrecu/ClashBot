@@ -33,6 +33,19 @@ Exemplo do usuário: ~15 contas Fixas + ~50 contas Visitantes (CV6).
    - Validar com 1 conta que o dano conta igual a um ataque assistido até o fim.
 5. Repetir até acabarem os ataques da conta.
 
+### Composição padrão e feitiços
+
+- Padrão (configurável): **Super Miners + 2 Frost** (spam mais usado pela comunidade).
+- Os feitiços precisam ser lançados **antes** de fechar o jogo.
+- **Regra do usuário: os 2 Frost NUNCA no mesmo lugar.**
+  - Frost 1: alguns segundos após soltar os mineradores, à frente do ponto de drop
+    (direção do centro do mapa / primeiras defesas).
+  - Frost 2: alguns segundos depois, em outro ponto, mais adentro na mesma direção.
+  - Distância mínima entre os dois centros ≥ 2× o raio do Frost (sem sobreposição);
+    se o ponto calculado violar isso, deslocar até respeitar.
+  - Verificar pela barra que cada Frost saiu (contador do feitiço caiu) antes de fechar.
+- Spam preparado para Skeleton Park ser o distrito mais fraco para mineradores (aceitar menos dano ali).
+
 Futuro: opção geral "Fechar o jogo após soltar tudo" também para vila e Base do Construtor.
 
 ## Pontos de drop (sem configuração por mapa)
