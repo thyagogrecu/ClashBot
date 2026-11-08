@@ -33,6 +33,13 @@ Ao ajudar, combine os dois domínios:
 - Por isso as soluções devem pensar em **escala**: várias instâncias de emulador e perfis,
   troca de contas, configurações por faixa de CV, padronização e automação da gestão.
 
+## Documentos do projeto (ler antes de começar)
+
+- `docs/PH-MOD-INVENTARIO.md` — o que o PH Mod do Fael ("Phael") acrescenta ao MBR (base em `MyBot/`).
+- `docs/RAID-ROTATION-SPEC.md` — especificação da Raid Rotation (Raid Weekend da Capital do Clã):
+  papéis Fixo/Visitante, Super Miner + 2 Frost, fechar o jogo após o drop, busca de ponto de drop.
+- Emulador do usuário: **MEmu** (`COCBot/functions/Android/AndroidMEmu.au3`).
+
 ## Diretrizes
 
 - Dê recomendações concretas e ajustadas ao nível de CV/objetivo do usuário (farm, troféus, guerra).
