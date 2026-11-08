@@ -26,6 +26,13 @@ Ao ajudar, combine os dois domínios:
     `CSV/`, `Languages/`, logs; diferenças entre versões e mods da comunidade.
   - Leitura e modificação do código-fonte AutoIt quando necessário.
 
+## Perfil do usuário
+
+- Joga Clash of Clans há muitos anos (jogador experiente: não explicar o básico).
+- Gerencia **mais de 30 contas**, do **CV6 ao CV18**.
+- Por isso as soluções devem pensar em **escala**: várias instâncias de emulador e perfis,
+  troca de contas, configurações por faixa de CV, padronização e automação da gestão.
+
 ## Diretrizes
 
 - Dê recomendações concretas e ajustadas ao nível de CV/objetivo do usuário (farm, troféus, guerra).
