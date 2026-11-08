@@ -1,0 +1,60 @@
+#include "Extras\HelpFileInternals.au3"
+
+#include <GUIConstantsEx.au3>
+#include <GuiImageList.au3>
+#include <GuiToolbar.au3>
+#include <WinAPIGdi.au3>
+#include <WindowsStylesConstants.au3>
+
+Example()
+
+Func Example()
+	; Create GUI
+	Local $hGUI = GUICreate("Toolbar Get/Set Hot ImageList (v" & @AutoItVersion & ")", 400, 300)
+	GUISetBkColor(0xffff00)
+	Local $hToolbar = _GUICtrlToolbar_Create($hGUI)
+	_MemoCreate(2, 36, 396, 262, $WS_VSCROLL)
+	GUISetState(@SW_SHOW)
+
+	; Create normal image list
+	Local $hNormal = _GUIImageList_Create(32, 24)
+	_GUIImageList_Add($hNormal, _WinAPI_CreateSolidBitmap($hGUI, 0xFF0000, 32, 24))
+	_GUIImageList_Add($hNormal, _WinAPI_CreateSolidBitmap($hGUI, 0x00FF00, 32, 24))
+	_GUIImageList_Add($hNormal, _WinAPI_CreateSolidBitmap($hGUI, 0x0000FF, 32, 24))
+	_GUICtrlToolbar_SetImageList($hToolbar, $hNormal)
+
+	; Create disabled image list
+	Local $hDisabled = _GUIImageList_Create(32, 24)
+	_GUIImageList_Add($hDisabled, _WinAPI_CreateSolidBitmap($hGUI, 0xCCCCCC, 32, 24))
+	_GUIImageList_Add($hDisabled, _WinAPI_CreateSolidBitmap($hGUI, 0xCCCCCC, 32, 24))
+	_GUIImageList_Add($hDisabled, _WinAPI_CreateSolidBitmap($hGUI, 0xCCCCCC, 32, 24))
+	_GUICtrlToolbar_SetDisabledImageList($hToolbar, $hDisabled)
+
+	; Create hot image list
+	Local $hHot = _GUIImageList_Create(32, 24)
+	_GUIImageList_Add($hHot, _WinAPI_CreateSolidBitmap($hGUI, 0x111111, 32, 24))
+	_GUIImageList_Add($hHot, _WinAPI_CreateSolidBitmap($hGUI, 0x888888, 32, 24))
+	_GUIImageList_Add($hHot, _WinAPI_CreateSolidBitmap($hGUI, 0xAAAAAA, 32, 24))
+	Local $hPrevImageList = _GUICtrlToolbar_SetHotImageList($hToolbar, $hHot)
+	_MemoWrite("Previous Hot image list handle .: 0x" & Hex($hPrevImageList))
+	_MemoWrite("IsPtr = " & IsPtr($hPrevImageList) & " IsHWnd = " & IsHWnd($hPrevImageList))
+
+	; Add buttons
+	Local Enum $idRed = 1000, $idGreen, $idBlue
+	_GUICtrlToolbar_AddButton($hToolbar, $idRed, 0)
+	_GUICtrlToolbar_AddButton($hToolbar, $idGreen, 1)
+	_GUICtrlToolbar_AddButton($hToolbar, $idBlue, 2)
+
+	; Disable Blue button
+	_GUICtrlToolbar_EnableButton($hToolbar, $idBlue, False)
+
+	; Show image list handles
+	_MemoWrite("Disabled list handle .: 0x" & Hex(_GUICtrlToolbar_GetDisabledImageList($hToolbar)))
+	_MemoWrite("Hot list handle ......: 0x" & Hex(_GUICtrlToolbar_GetHotImageList($hToolbar)))
+	_MemoWrite("IsPtr = " & IsPtr(_GUICtrlToolbar_GetHotImageList($hToolbar)) & " IsHWnd = " & IsHWnd(_GUICtrlToolbar_GetHotImageList($hToolbar)))
+	_MemoWrite("Normal list handle ...: 0x" & Hex(_GUICtrlToolbar_GetImageList($hToolbar)))
+
+	; Loop until the user exits.
+	Do
+	Until GUIGetMsg() = $GUI_EVENT_CLOSE
+EndFunc   ;==>Example

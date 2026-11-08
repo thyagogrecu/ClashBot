@@ -1,0 +1,30 @@
+#include "Extras\HelpFileInternals.au3"
+
+#include <Array.au3>
+#include <Excel.au3>
+#include <MsgBoxConstants.au3>
+
+; Creates two instances of Excel and opens a workbook in each instance
+Local $sWorkbook1 = _Extras_PathFull("_Excel1.xls"), $sWorkbook2 = _Extras_PathFull("_Excel2.xls")
+Local $oExcel1 = _Excel_Open()
+If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_BookList Example 1", "Error creating the Excel application object." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
+Local $oWorkbook1 = _Excel_BookOpen($oExcel1, $sWorkbook1)
+If @error Then
+	MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_BookList Example 1", "Error opening workbook '" & $sWorkbook1 & "'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
+	_Excel_Close($oExcel1)
+	Exit
+EndIf
+Local $oExcel2 = _Excel_Open(Default, Default, Default, Default, True)
+If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_BookList Example 1", "Error creating the Excel application object." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
+Local $oWorkbook2 = _Excel_BookOpen($oExcel2, $sWorkbook2)
+If @error Then
+	MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_BookList Example 1", "Error opening workbook '" & $sWorkbook2 & "'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
+	_Excel_Close($oExcel1)
+	_Excel_Close($oExcel2)
+	Exit
+EndIf
+
+; Display a list of all workbooks of all Excel instances
+Local $aWorkBooks = _Excel_BookList()
+If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_BookList Example 1", "Error listing Workbooks." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
+_ArrayDisplay($aWorkBooks, "Excel UDF: _Excel_BookList Example 1 - List of workbooks of all instances")

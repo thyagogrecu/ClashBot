@@ -1,0 +1,63 @@
+#include "Extras\HelpFileInternals.au3"
+
+#include <GuiMenu.au3>
+#include <StructureConstants.au3>
+
+Global $g_hWnd
+
+Example()
+
+Func Example()
+	Local $hMain, $hFile, $tRECT, $tPoint, $iX, $iY, $iIndex
+
+	; Open Notepad
+	Run("notepad.exe")
+	$g_hWnd = WinWaitActive("[CLASS:Notepad]")
+	$hMain = _GUICtrlMenu_GetMenu($g_hWnd)
+	$hFile = _GUICtrlMenu_GetItemSubMenu($hMain, 0)
+
+	; Open File menu
+	Send("!f")
+	Sleep(1000)
+
+	; Move mouse over Open menu item
+	$tRECT = _GUICtrlMenu_GetItemRectEx($g_hWnd, $hFile, 1)
+	$tPoint = _Lib_PointFromRect($tRECT, True)
+	_Lib_GetXYFromPoint($tPoint, $iX, $iY)
+	MouseMove($iX, $iY, 1)
+	Sleep(1000)
+
+	; Get menu item from current mouse position
+	$iIndex = _GUICtrlMenu_MenuItemFromPoint($g_hWnd, $hFile)
+	Send("{ESC 2}")
+	Writeln("Menu item under cursor was: " & $iIndex)
+
+	_NotepadForceClose($g_hWnd)
+EndFunc   ;==>Example
+
+; Write a line of text to Notepad
+Func Writeln($sText, $hWnd = $g_hWnd)
+	ControlSend($hWnd, "", ControlGetFocus($hWnd), $sText & @CRLF)
+EndFunc   ;==>Writeln
+
+Func _Lib_PointFromRect(ByRef $tRECT, $bCenter = True)
+	Local $iX1, $iY1, $iX2, $iY2, $tPoint
+
+	$iX1 = DllStructGetData($tRECT, "Left")
+	$iY1 = DllStructGetData($tRECT, "Top")
+	$iX2 = DllStructGetData($tRECT, "Right")
+	$iY2 = DllStructGetData($tRECT, "Bottom")
+	If $bCenter Then
+		$iX1 = $iX1 + (($iX2 - $iX1) / 2)
+		$iY1 = $iY1 + (($iY2 - $iY1) / 2)
+	EndIf
+	$tPoint = DllStructCreate($tagPOINT)
+	DllStructSetData($tPoint, "X", $iX1)
+	DllStructSetData($tPoint, "Y", $iY1)
+	Return $tPoint
+EndFunc   ;==>_Lib_PointFromRect
+
+Func _Lib_GetXYFromPoint(ByRef $tPoint, ByRef $iX, ByRef $iY)
+	$iX = DllStructGetData($tPoint, "X")
+	$iY = DllStructGetData($tPoint, "Y")
+EndFunc   ;==>_Lib_GetXYFromPoint

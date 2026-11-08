@@ -1,0 +1,34 @@
+#include "Extras\HelpFileInternals.au3"
+
+#include <GUIConstantsEx.au3>
+#include <GuiMonthCal.au3>
+#include <WindowsStylesConstants.au3>
+
+Example()
+
+Func Example()
+	Local $tMin, $tMax, $idMonthCal
+
+	; Create GUI
+	GUICreate("Month Calendar Get Month Range Max", 400, 300)
+	$idMonthCal = GUICtrlCreateMonthCal("", 4, 4, -1, -1, BitOR($WS_BORDER, $MCS_MULTISELECT), 0x00000000)
+
+	; Create memo control
+	_MemoCreate(4, 168, 392, 128, 0)
+	GUISetState(@SW_SHOW)
+
+	; Get month range
+	$tMin = _GUICtrlMonthCal_GetMonthRangeMin($idMonthCal)
+	$tMax = _GUICtrlMonthCal_GetMonthRangeMax($idMonthCal)
+	_MemoWrite("Month range minimum: " & StringFormat("%02d/%02d/%04d", DllStructGetData($tMin, "Month"), _
+			DllStructGetData($tMin, "Day"), _
+			DllStructGetData($tMin, "Year")))
+	_MemoWrite("Month range maximum: " & StringFormat("%02d/%02d/%04d", DllStructGetData($tMax, "Month"), _
+			DllStructGetData($tMax, "Day"), _
+			DllStructGetData($tMax, "Year")))
+
+	; Loop until the user exits.
+	Do
+	Until GUIGetMsg() = $GUI_EVENT_CLOSE
+	GUIDelete()
+EndFunc   ;==>Example
