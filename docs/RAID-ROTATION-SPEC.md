@@ -36,14 +36,20 @@ Exemplo do usuário: ~15 contas Fixas + ~50 contas Visitantes (CV6).
 ### Composição padrão e feitiços
 
 - Padrão (configurável): **Super Miners + 2 Frost** (spam mais usado pela comunidade).
-- Os feitiços precisam ser lançados **antes** de fechar o jogo.
+- **Regra do usuário: os 2 Frost são lançados ANTES do drop das tropas.**
 - **Regra do usuário: os 2 Frost NUNCA no mesmo lugar.**
-  - Frost 1: alguns segundos após soltar os mineradores, à frente do ponto de drop
-    (direção do centro do mapa / primeiras defesas).
-  - Frost 2: alguns segundos depois, em outro ponto, mais adentro na mesma direção.
-  - Distância mínima entre os dois centros ≥ 2× o raio do Frost (sem sobreposição);
-    se o ponto calculado violar isso, deslocar até respeitar.
-  - Verificar pela barra que cada Frost saiu (contador do feitiço caiu) antes de fechar.
+- Sequência:
+  1. **Descobrir o ponto de drop sem gastar tropa:** com o Super Miner selecionado, tocar no
+     centro do mapa (área com construções, sempre proibida). O jogo mostra a zona proibida em
+     vermelho; capturar a tela e escolher o ponto liberado mais próximo das defesas.
+     (Validar no jogo que a Capital mostra essa área vermelha; senão usar ponto de borda.)
+  2. **Frost 1:** sobre as primeiras defesas entre o ponto de drop e o centro.
+  3. **Frost 2:** em outro ponto, mais adentro na mesma direção.
+     Distância mínima entre os centros ≥ 2× o raio do Frost (sem sobreposição);
+     se o ponto calculado violar isso, deslocar até respeitar.
+  4. **Drop imediato dos Super Miners** no ponto escolhido (logo após o Frost 2, para chegarem
+     enquanto as defesas estão congeladas), com a verificação da barra e a busca de ponto como fallback.
+  5. Conferir na barra que tudo saiu (tropas e os 2 Frost) → fechar e reabrir o jogo.
 - Spam preparado para Skeleton Park ser o distrito mais fraco para mineradores (aceitar menos dano ali).
 
 Futuro: opção geral "Fechar o jogo após soltar tudo" também para vila e Base do Construtor.
